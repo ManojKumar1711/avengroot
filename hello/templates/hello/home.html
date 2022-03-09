@@ -1,0 +1,27 @@
+{% extends 'hello/base.html' %}
+{% load static %}
+{% block homeActive %}
+    btn-warning
+{% endblock %}
+{% block homeText %}
+    text-black
+{% endblock %}
+{% block content %}
+    <header class="masthead"
+            style="background-image: url('{% static 'hello/images/header-bg.jpg' %}')">
+        <div class="container">
+            <div class="intro-text">
+                <div class="intro-lead-in"><span>Welcome To My Website!</span></div>
+                <div class="intro-heading text-uppercase"><span></span></div>
+                <a class="btn btn-danger btn-xl text-uppercase" role="button" href="{% url 'about' %}">EXPLORE</a>
+            </div>
+        </div>
+    </header>
+
+
+
+
+
+
+
+{% endblock %}

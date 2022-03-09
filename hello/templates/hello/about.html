@@ -1,0 +1,473 @@
+{% extends 'hello/base.html' %}
+{% load static %}
+{% block aboutActive %}
+    btn-warning
+{% endblock %}
+{% block aboutText %}
+    text-black
+{% endblock %}
+{% block content %}
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .bio {
+            font-size: 1.6rem;
+            font-family: sans-serif;
+            color: #fff;
+        }
+
+
+        .blurred-wrapper {
+            height: 100vh;
+            background: url("{% static 'hello/images/test.jpg' %}") center/cover;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            animation: hue 10s infinite alternate;
+        }
+
+        .blurred-wrapper::after {
+            content: "";
+            width: 100%;
+            height: 100%;
+            background: inherit;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            filter: blur(1.0rem);
+            transform: scale(1.15);
+        }
+
+        @keyframes hue {
+            from {
+                filter: hue-rotate(0);
+            }
+            to {
+                filter: hue-rotate(360deg);
+            }
+        }
+
+        .main-header {
+            height: 7rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+
+        .hero {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            height: calc(100vh - 7rem);
+        {#display: grid;#}{#place-items: center;#} justify-content: center;
+        }
+
+        .content-wrapper {
+            max-width: 100rem;
+            transform: translateY(-4rem);
+            display: flex;
+            flex-direction: column;
+        {#align-items: center;#}{#justify-content: center;#}
+        }
+
+        .tagline {
+            text-transform: uppercase;
+            font-size: 1rem;
+            font-weight: 100;
+            margin-bottom: 1rem;
+            text-align: center;
+
+        }
+
+        .title {
+            font-family: "Calibri Light", sans-serif;
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: greenyellow;
+            text-align: center;
+        }
+
+        .message {
+            font-size: 1.4rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        @media screen and(min-width: 768px) {
+
+            .content-wrapper {
+                max-width: 60rem;
+            }
+
+            .tagline {
+                font-size: 1.6rem;
+            }
+
+            .title {
+                font-size: 6rem;
+            }
+
+            .message {
+                font-size: 2rem;
+            }
+
+        }
+
+
+        /* About Section */
+
+        #about {
+            font-family: 'Montserrat', sans-serif;
+            scroll-behavior: smooth;
+
+        }
+
+        #about .about {
+
+            font-family: 'Montserrat', sans-serif;
+            scroll-behavior: smooth;
+            flex-direction: column-reverse;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        #about .container {
+            min-height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #about .col-left {
+            width: 250px;
+            height: 360px;
+        }
+
+        #about .col-right {
+            width: 100%;
+            color: black;
+            margin-bottom: 50px;
+            padding: 10px 20px;
+
+        }
+
+        #about .col-right h2 {
+            font-size: 1.2rem;
+            font-weight: lighter;
+            color: darkblue;
+            letter-spacing: 0.2rem;
+            margin-bottom: 10px;
+        }
+
+        #about .col-right p {
+            margin-bottom: 20px;
+            color: black;
+            margin-top: 5px;
+            line-height: 1.6rem;
+            font-weight: 300;
+
+        }
+
+        #about .col-left .about-img {
+            height: 100%;
+            width: 100%;
+            position: relative;
+            border: 10px solid white;
+        }
+
+        #about .col-left .about-img::after {
+            content: '';
+            position: absolute;
+            left: -33px;
+            top: 19px;
+            height: 98%;
+            width: 98%;
+            border: 7px solid crimson;
+            z-index: -1;
+        }
+
+        #about img {
+
+            height: 100%;
+            width: 100%;
+            object-fit: fill;
+        }
+
+        #about h1 {
+            font-size: 3rem;
+            text-transform: uppercase;
+            color: black;
+        }
+
+
+        #about h1 span {
+            color: crimson;
+        }
+
+        #about .section-title {
+            font-size: 4rem;
+            font-weight: 300;
+            color: black;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.2rem;
+            text-align: center;
+        }
+
+        #about .section-title span {
+            color: crimson;
+        }
+
+        @media only screen and (min-width: 768px) {
+            #about .about {
+                flex-direction: row;
+            }
+
+            #about .col-left {
+                width: 600px;
+                height: 400px;
+                padding-left: 60px;
+            }
+
+            #about .about .col-left .about-img::after {
+                left: -45px;
+                top: 34px;
+                height: 98%;
+                width: 98%;
+                border: 10px solid crimson;
+            }
+
+            #about .col-right {
+                text-align: left;
+                padding: 30px;
+            }
+
+            #about .col-right h1 {
+                text-align: left;
+            }
+        }
+
+        /* End About Section */
+
+
+        /* Logo Section */
+        .m-logo {
+            text-align: center;
+            background-image: url("{% static 'hello/images/backgroundimg.jpg' %}");
+
+        }
+
+        .m-logo img {
+            width: 40%;
+            height: 40%;
+            border-radius: 10px;
+
+        }
+
+        /* End Logo Section */
+
+
+        /* Services Section */
+        #skills .skills {
+        {#flex-direction: column;#} text-align: center;
+            max-width: 1500px;
+            margin: 0 auto;
+        {#padding: 100px 0;#}
+        }
+
+        #skills .section-title {
+            font-size: 4rem;
+            font-weight: 300;
+            color: black;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: .2rem;
+            text-align: center;
+        }
+
+        #skills .section-title span {
+            color: crimson;
+        }
+
+        #skills .skills-top p {
+            font-size: 1rem;
+            margin-top: 5px;
+            line-height: 1.7rem;
+            font-weight: 300;
+            letter-spacing: .05rem;
+        }
+
+        #skills .skills-top {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        #skills .skills-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 50px;
+
+        }
+
+        #skills .skills-item {
+            flex-basis: 30%;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            flex-direction: column;
+        {#flex-wrap: wrap;#} padding: 30px;
+            border-radius: 20px;
+            background-image: url("{% static 'hello/images/img-1.png' %}");
+            background-size: cover;
+            margin: 10px 5%;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        @media screen and (max-width: 800px) {
+            #skills .skills-item {
+                flex-basis: 70%;
+            }
+        }
+
+
+        #skills .skills-item::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
+            opacity: .8;
+            z-index: -1;
+        }
+
+        #skills .skills-bottom .icon {
+            height: 80px;
+            width: 80px;
+            margin-bottom: 20px;
+        }
+
+        #skills .skills-item h2 {
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        #skills .skills-item p {
+            color: white;
+            text-align: left;
+        }
+
+        /* End Services Section */
+
+    </style>
+
+
+    <!-- Intro Section -->
+    <div class="bio">
+        <div class="blurred-wrapper">
+            <div class="main-header">
+
+            </div>
+            <section class="hero container">
+                <div class="content-wrapper">
+                    {#                    <div class="row">#}
+                    <h5 class="tagline">More than just a Website</h5>
+                    <h1 class="title">Hello I'm Manoj Kumar</h1>
+                    <p class="message">"Life was much easier when<br>APPLE & BLACKBERRY<br> were just FRUITS...."
+                    </p>
+                    {#                    </div>#}
+                </div>
+            </section>
+        </div>
+    </div>
+    <!-- End Intro Section -->
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="about container">
+            <div class="col-left">
+                <div class="about-img">
+                    <img src="{% static 'hello/images/boyimage.jpg' %}" alt="img">
+                </div>
+            </div>
+            <div class="col-right">
+                <h1 class="section-title">About <span>me</span></h1>
+                <h2>A programmer who loves to build simple and beautiful things... </h2>
+                <p><br>
+                    Hi guys I'm Manoj Kumar born 18 years before creating this website. Currently, a
+                    student at RMKCET. I'm a Full Stack Developer from India. I enjoy taking complex problems and
+                    turning them into simple and beautiful interface designs. When I'm not coding or pushing in repos,
+                    you'll find me listening music or on the court playing ...
+                </p>
+
+            </div>
+        </div>
+    </section>
+    <!-- End About Section -->
+
+    <!-- Logo section -->
+    <div class="m-logo container">
+        <img src="{% static 'hello/images/M logo.png' %}" alt="logo">
+    </div>
+    <!-- End of Logo Section -->
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="skills container">
+            <div class="skills-top">
+                <h1 class="section-title">SK<span>I</span>LLS</h1>
+                <p>
+                    "The purpose of education is to make good human beings with skill and expertise... Enlightened human
+                    beings can be created by teachers.
+
+                    A. P. J. Abdul Kalam"
+                </p>
+            </div>
+            <div class="skills-bottom container">
+                <div class="skills-item">
+                    <div class="icon"><img src="{% static 'hello/images/python.png' %}" alt=""/></div>
+                    <h2>Python</h2>
+
+                </div>
+                <div class="skills-item">
+                    <div class="icon"><img src="{% static 'hello/images/java.png' %}" alt=""/></div>
+                    <h2>Java</h2>
+
+                </div>
+                <div class="skills-item">
+                    <div class="icon"><img src="{% static 'hello/images/django.png' %}" alt=""/></div>
+                    <h2>Django</h2>
+
+                </div>
+                <div class="skills-item">
+                    <div class="icon"><img src="{% static 'hello/images/html.png' %}" alt=""/></div>
+                    <h2>Html</h2>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Service Section -->
+
+
+
+
+
+{% endblock %}
